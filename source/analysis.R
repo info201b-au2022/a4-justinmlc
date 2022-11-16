@@ -20,10 +20,25 @@ test_query2 <- function(num=6) {
 
 ## Section 2  ---- 
 #----------------------------------------------------------------------------#
-incarceration_data <- read.csv("~/Documents/info201/assignments/a4-justinmlc/source/incarceration_trends.csv")
-# Comparing all races, which out of all has the highest population in jail?
+incarceration_data <- read.csv("https://github.com/vera-institute/incarceration-trends/raw/master/incarceration_trends.csv")
+# Comparing all races, which out of all has the highest population in jail in the most recent year?
 highest_jail_pop <- incarceration_data %>% 
-  select(year, aapi_prison_pop, black_prison_pop, latinx_prison_pop, white_prison_pop, other_race_prison_pop)
+  drop_na %>% 
+  filter(year == max(year)) %>% 
+  group_by(aapi_prison_pop, black_prison_pop, latinx_prison_pop, white_prison_pop, other_race_prison_pop) %>% 
+  summarize(
+    sum_aapi = sum(aapi_prison_pop, na.rm = TRUE),
+    sum_black = sum(black_prison_pop, na.rm = TRUE),
+    sum_latinx = sum(latinx_prison_pop, na.rm = TRUE), 
+    sum_white = sum(white_prison_pop, na.rm = TRUE),
+    sum_other = sum(other_race_prison_pop, na.rm = TRUE)
+  )
+
+highest_aapi_jail <- incarceration_data %>% 
+  drop_na %>% 
+  filter(year == max(year)) %>% 
+  mutate(max_aapi = max(aapi_prison_pop, na.rm = TRUE)) %>% 
+  select(max_aapi)
 #----------------------------------------------------------------------------#
 
 ## Section 3  ---- 
