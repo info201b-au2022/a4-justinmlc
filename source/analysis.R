@@ -20,7 +20,7 @@ test_query2 <- function(num=6) {
 
 ## Section 2  ---- 
 #----------------------------------------------------------------------------#
-# Your functions and variables might go here ... <todo: update comment>
+incarceration_data <- read.csv("~/Documents/info201/assignments/a4-justinmlc/source/incarceration_trends.csv")
 #----------------------------------------------------------------------------#
 
 ## Section 3  ---- 

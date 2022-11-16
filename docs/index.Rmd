@@ -1,6 +1,6 @@
 ---
 title: "Your A4 Report Title (TODO: Revise title)"
-author: "Your Name"
+author: "Justin Callejo"
 date: '2022-11-01'
 output: html_document
 ---
@@ -34,8 +34,9 @@ print(sum)
 ```
 
 ## Introduction 
-[TODO]
+This report uses data from the Vera Institute to explore the phenomenons of inequality by those affected by incarceration, otherwise known as imprisonment. Social inequality has had a daunting presence in many sections of society, whether it be through police brutality, segregation, and even naturally embedded into the Constitution that supposedly knits together the laws and policies fairly across all citizens of the United States. These inequalities all the more apply to incarceration, and is what will be focused on in this report. Direct stakeholders include those in who are imprisonment and/or have had time in prison and those enforcing the arrests. Indirect stakeholders may include the families of those in imprisonment, County jails/prisons all over the country, and perhaps even the judge of the trials that the prisoners had to participate in. 
 
+With all this context, the questions that will be answered in this report will examine the severity of social inequality when it comes to incarceration. What is the proportion of white to black people in prison? How about men to women? Does age play a part in your chances in getting arrested? We will explore these questions in this report.
 ## Data Summary 
 [TODO]
 
