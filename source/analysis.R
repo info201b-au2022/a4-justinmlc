@@ -21,24 +21,61 @@ test_query2 <- function(num=6) {
 ## Section 2  ---- 
 #----------------------------------------------------------------------------#
 incarceration_data <- read.csv("https://github.com/vera-institute/incarceration-trends/raw/master/incarceration_trends.csv")
-# Comparing all races, which out of all has the highest population in jail in the most recent year?
-highest_jail_pop <- incarceration_data %>% 
-  drop_na %>% 
-  filter(year == max(year)) %>% 
-  group_by(aapi_prison_pop, black_prison_pop, latinx_prison_pop, white_prison_pop, other_race_prison_pop) %>% 
-  summarize(
-    sum_aapi = sum(aapi_prison_pop, na.rm = TRUE),
-    sum_black = sum(black_prison_pop, na.rm = TRUE),
-    sum_latinx = sum(latinx_prison_pop, na.rm = TRUE), 
-    sum_white = sum(white_prison_pop, na.rm = TRUE),
-    sum_other = sum(other_race_prison_pop, na.rm = TRUE)
-  )
+# What is the proportion of black people to white people in prison in the country in the most recent year 'black_to_white_prison_proportion'  ?
 
-highest_aapi_jail <- incarceration_data %>% 
-  drop_na %>% 
+white_in_prison <- incarceration_data %>% 
+  drop_na() %>% 
   filter(year == max(year)) %>% 
-  mutate(max_aapi = max(aapi_prison_pop, na.rm = TRUE)) %>% 
-  select(max_aapi)
+  group_by(state) %>% 
+  summarize(sum = sum(white_prison_pop))
+
+total_white_in_prison <- sum(white_in_prison$sum)
+
+black_in_prison <- incarceration_data %>% 
+  drop_na() %>% 
+  filter(year == max(year)) %>% 
+  group_by(state) %>% 
+  summarize(sum = sum(black_prison_pop))
+
+total_black_in_prison <- sum(black_in_prison$sum)
+
+black_to_white_prison_proportion <- round(total_black_in_prison / total_white_in_prison, 1)
+
+# What is the proportion of males to females in prison in the country in the most recent year? 'male_to_female_prison_proportion'
+male_in_prison <- incarceration_data %>% 
+  drop_na() %>% 
+  filter(year == max(year)) %>% 
+  group_by(state) %>% 
+  summarize(sum = sum(male_prison_pop))
+
+total_male_in_prison <- sum(male_in_prison$sum)
+
+female_in_prison <- incarceration_data %>% 
+  drop_na() %>% 
+  filter(year == max(year)) %>% 
+  group_by(state) %>% 
+  summarize(sum = sum(female_prison_pop))
+
+total_female_in_prison <- sum(female_in_prison$sum)
+
+male_to_female_prison_proportion <- round(total_male_in_prison / total_female_in_prison, 1)
+
+# What is the proportion of adults to juveniles in jail in the country in the most recent year? 'adult_to_juvenile_prison_proportion'
+adult_in_jail <- incarceration_data %>% 
+  drop_na() %>% 
+  filter(year == max(year)) %>% 
+  group_by(state) %>% 
+  summarize(sum = sum(male_adult_jail_pop, female_adult_jail_pop))
+
+total_adult_in_jail <- round(sum(adult_in_jail$sum), 0)
+
+juvenile_in_jail <- incarceration_data %>% 
+  drop_na() %>% 
+  filter(year == max(year)) %>% 
+  group_by(state) %>% 
+  summarize(sum = sum(male_juvenile_jail_pop, female_juvenile_jail_pop))
+
+total_juvenile_in_jail <- round(sum(juvenile_in_jail$sum), 0)
 #----------------------------------------------------------------------------#
 
 ## Section 3  ---- 
