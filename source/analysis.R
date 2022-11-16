@@ -1,5 +1,5 @@
 library(tidyverse)
-
+library(dplyr)
 # The functions might be useful for A4
 source("../source/a4-helpers.R")
 
@@ -21,6 +21,9 @@ test_query2 <- function(num=6) {
 ## Section 2  ---- 
 #----------------------------------------------------------------------------#
 incarceration_data <- read.csv("~/Documents/info201/assignments/a4-justinmlc/source/incarceration_trends.csv")
+# Comparing all races, which out of all has the highest population in jail?
+highest_jail_pop <- incarceration_data %>% 
+  select(year, aapi_prison_pop, black_prison_pop, latinx_prison_pop, white_prison_pop, other_race_prison_pop)
 #----------------------------------------------------------------------------#
 
 ## Section 3  ---- 
