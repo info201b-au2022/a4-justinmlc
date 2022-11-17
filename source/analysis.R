@@ -1,5 +1,6 @@
 library(tidyverse)
 library(dplyr)
+library(ggplot2)
 # The functions might be useful for A4
 source("../source/a4-helpers.R")
 
@@ -85,14 +86,30 @@ total_juvenile_in_jail <- round(sum(juvenile_in_jail$sum), 0)
 #----------------------------------------------------------------------------#
 # This function ... <todo:  update comment>
 get_year_jail_pop <- function() {
-  # TODO: Implement this function 
-return()   
+  year_jail_pop <- incarceration_data %>% 
+    select(year, total_jail_pop) %>% 
+    drop_na() %>% 
+    filter(year >= 1970 & year <= 2018) %>% 
+    group_by(year) %>% 
+    summarize(total_jail_pop = sum(total_jail_pop))
+  
+return(year_jail_pop)   
 }
 
 # This function ... <todo:  update comment>
 plot_jail_pop_for_us <- function()  {
-  # TODO: Implement this function 
-  return()   
+  year_jail_pop <- get_year_jail_pop()
+  p <- ggplot(year_jail_pop) +
+    geom_col(
+      mapping = aes(x = year, y = total_jail_pop)
+    ) +
+    scale_y_continuous(labels = scales::comma) + 
+    labs(
+      title = "Increase of Jail Population in U.S. (1970-2018)",
+      x = "Year",
+      y = "Total Jail Population"
+    )
+  return(p)   
 } 
 
 ## Section 4  ---- 
