@@ -40,12 +40,14 @@ The Incarceration Dataset provides many different values that shape the incarcer
 plot_jail_pop_for_us()
 
 ```
+
 From the 1970s to 1980, the prison population seems to be relatively static, but from that point onward the numbers started to **rapidly increase** at alarming rates. However, starting at around the late 2000s, the increase has been diminishing...
 
 ## Growth of U.S. Prison Population by State
 ```{r, echo=FALSE}
 plot_jail_pop_by_states(c('WA', 'TX', 'CA', 'FL', 'OR', 'GA', 'UT'))
 ```
+
 Looking at the data, it seems that California is the state with the highest prison population throughout the given years. Is there really inequality in Prison Population by numbers or is it purely because there is just a higher general population in California than others? While this may be a case, there is evidence to prove against this. Washington has a _higher population_ than Oregon, yet Oregon towers over Washington in terms of _prison population and growth_.
 
 ## Disproportionality of Gender Representation in Prison
@@ -53,6 +55,7 @@ Looking at the data, it seems that California is the state with the highest pris
 plot_prop_male_in_prison()
 plot_prop_female_in_prison()
 ```
+
 Just how apparent is the gender disproportionality in prisons since the year 2000? At first glance, the two graphs each representing male and female respectively seem relatively equal with minor differences in shape. However the inequality soon starts to settle in once you pay attention to the *scale* of both of the graphs. The population of men in prison at that point starts to **massively outnumber** the population of women in prison.
 
 ## State Inequality of Black American Representation in Jail
