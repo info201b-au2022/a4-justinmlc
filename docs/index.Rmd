@@ -1,7 +1,7 @@
 ---
-title: "Your A4 Report Title (TODO: Revise title)"
+title: "Inequality in the Incarceration System"
 author: "Justin Callejo"
-date: '2022-11-01'
+date: '2022-11-21'
 output: html_document
 ---
 
@@ -11,27 +11,14 @@ source("../source/analysis.R")
 ```
 
 ## Abstract 
-[TODO: Include a short abstract (about 50 words)]
+The Vera Institute created an incarceration dataset by employing two data collections from the Bureau of Justice Statistics. We will use this data provided by them to explore the many sources of inequality and disproportionality found throughout the recent years and displaying through data visualizations.
 
-# Test (TODO: Remove before submission!!)
 ```{r echo=FALSE}
 q1_string <- test_query1()
 num <- 5
 ```
 As you know, this is a markdown report. The [R Markdown Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) is **useful!**
 
-* Here's a test of a dynamic variable. Say **"`r q1_string`!!!** 
-* Here's another test. A vector
-of numbers: `r test_query2(num)`.
-
-Recall that _{r echo=TRUE}_ can be used to display the code, 
-which is very useful when developing and debugging a report. Here's an example: 
-
-```{r echo=TRUE}
-num <- 5
-sum <- sum(test_query2(num))
-print(sum)
-```
 
 ## Introduction 
 This report uses data from the Vera Institute to explore the phenomenons of inequality by those affected by incarceration, otherwise known as imprisonment. Social inequality has had a daunting presence in many sections of society, whether it be through police brutality, segregation, and even naturally embedded into the Constitution that supposedly knits together the laws and policies fairly across all citizens of the United States. These inequalities all the more apply to incarceration, and is what will be focused on in this report. Direct stakeholders include those in who are imprisonment and/or have had time in prison and those enforcing the arrests. Indirect stakeholders may include the families of those in imprisonment, County jails/prisons all over the country, and perhaps even the judge of the trials that the prisoners had to participate in. 
@@ -39,14 +26,40 @@ This report uses data from the Vera Institute to explore the phenomenons of ineq
 With all this context, the questions that will be answered in this report will examine the severity of social inequality when it comes to incarceration. What is the proportion of white to black people in prison? How about men to women? Does age play a part in your chances in getting arrested? We will explore these questions in this report.
 
 ## Data Summary 
-[TODO]
+```{r, echo=FALSE}
+bw_prop <- get_black_to_white_prison_proportion()
+mf_prop <- get_male_to_female_prison_proportion()
+aj_prop <- get_adult_to_juvenile_jail_proportion()
+```
 
+The Incarceration Dataset provides many different values that shape the incarceration system as whole. Taking a deeper look at these values, we can see that there are various forms of disproportion that indicate some sort of inequality in the system. In the most recent year, **`r bw_prop`** times more black people are in jail than white people. This may seem like a miniscule number, but as the total population number continues to increase to real-world numbers, there could be hundreds if not thousands more black people found in jails in comparison to white people **`r aj_prop`** times as many adults are found in prison than juveniles, and depending on the severity of the crime, the punishment that juveniles receive as opposed to adults could be unfair and unequal. However, a massive disproportion in the incarceration system is the male to female proportion which is a **`r mf_prop`** to 1 ratio. With this information, it is evident that males are much more likely to be admitted into jail.
+  
 ## Growth of the U.S. Prison Population
 
 ```{r, echo=FALSE}
 plot_jail_pop_for_us()
 
 ```
+From the 1970s to 1980, the prison population seems to be relatively static, but from that point onward the numbers started to **rapidly increase** at alarming rates. However, starting at around the late 2000s, the increase has been diminishing...
 
-_All the very best with your work!_
+## Growth of U.S. Prison Population by State
+```{r, echo=FALSE}
+plot_jail_pop_by_states(c('WA', 'TX', 'CA', 'FL', 'OR', 'GA', 'UT'))
+```
+Looking at the data, it seems that California is the state with the highest prison population throughout the given years. Is there really inequality in Prison Population by numbers or is it purely because there is just a higher general population in California than others? While this may be a case, there is evidence to prove against this. Washington has a _higher population_ than Oregon, yet Oregon towers over Washington in terms of _prison population and growth_.
+
+## Disproportionality of Gender Representation in Prison
+```{r, echo=FALSE}
+plot_prop_male_in_prison()
+plot_prop_female_in_prison()
+```
+Just how apparent is the gender disproportionality in prisons since the year 2000? At first glance, the two graphs each representing male and female respectively seem relatively equal with minor differences in shape. However the inequality soon starts to settle in once you pay attention to the *scale* of both of the graphs. The population of men in prison at that point starts to **massively outnumber** the population of women in prison.
+
+## State Inequality of Black American Representation in Jail
+```{r, echo=FALSE}
+create_inequality_map()
+```
+
+Where is Black American inequality in jails most apparent? Based on this visualization, and from trends seen in previous graph, the big population states such as California and Texas have generally large jail population, so to *some extent* they will have a naturally larger Black American population here. However, with a closer look, you can start to see that the **Eastern** side of the United States has a lot more red in its states, indicating that in general, Black American representation in jails in Eastern states are heavily warped in comparison to the rest of the states in the country.
+
 

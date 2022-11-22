@@ -1,5 +1,5 @@
 library(tidyverse)
-
+source("../source/analysis.R")
 # Data access ----
 #---------------------------------------------------------------------------#
 # This function returns the incarceration data as a dataframe
@@ -51,7 +51,7 @@ divisions_in_region <- function(p_region) {
 #    West South Central
 #----------------------------------------------------------------------------#
 states_in_division <- function(p_division) {
-  the_states <- incarceration_df %>%
+  the_states <- incarceration_data %>%
     filter(division == p_division) %>%
     distinct(state) %>%
     pull(state)
